@@ -1,0 +1,127 @@
+{
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce GTX 1650",
+    "image_size": 512,
+    "backbone": "vit_small_patch16_224",
+    "results_summary": [
+        {
+            "name": "Normal Dense ViT (Baseline)",
+            "seq_len": 1024,
+            "k_val": 0,
+            "params_M": 22.142677,
+            "mean_ms": 48.76248317718506,
+            "std_ms": 0.18132222807097706,
+            "fps": 20.50756923855508,
+            "speedup": 1.0,
+            "total_gflops": 62.813896704,
+            "attn_gflops": 19.327352832,
+            "vram_mb": 375.9013671875
+        },
+        {
+            "name": "Sparse-ViT (K=256)",
+            "seq_len": 272,
+            "k_val": 256,
+            "params_M": 22.69356,
+            "mean_ms": 32.669705123901366,
+            "std_ms": 1.3310164822944262,
+            "fps": 30.60939779552505,
+            "speedup": 1.492590245068056,
+            "total_gflops": 12.914786304,
+            "attn_gflops": 1.363673088,
+            "vram_mb": 365.9013671875
+        },
+        {
+            "name": "Sparse-ViT (K=128)",
+            "seq_len": 144,
+            "k_val": 128,
+            "params_M": 22.69356,
+            "mean_ms": 19.565764083862305,
+            "std_ms": 0.17828788519602576,
+            "fps": 51.109683001073925,
+            "speedup": 2.4922350575311287,
+            "total_gflops": 6.497501184,
+            "attn_gflops": 0.382205952,
+            "vram_mb": 365.9013671875
+        },
+        {
+            "name": "Sparse-ViT (K=64)",
+            "seq_len": 80,
+            "k_val": 64,
+            "params_M": 22.69356,
+            "mean_ms": 13.821602277755737,
+            "std_ms": 0.1760687054408251,
+            "fps": 72.3505118946581,
+            "speedup": 3.5279906191239934,
+            "total_gflops": 3.51535104,
+            "attn_gflops": 0.1179648,
+            "vram_mb": 365.9013671875
+        }
+    ],
+    "dense_stage_breakdown": {
+        "1. Dense Patch Projection Conv2d": 0.565463998913765,
+        "2. Positional Embedding Interpolation": 2.282948489189148,
+        "3. Transformer Blocks (12 Dense Layers, 1024 tokens)": 45.39318145751953,
+        "4. Detection Head (Class & BBox for 1024 tokens)": 0.6986352008581161
+    },
+    "sparse_stage_breakdown": {
+        "1. CNN Feature Extractor (MobileNetV3)": 3.2007299351692198,
+        "2. Fixation Sampler (Greedy NMS Loop)": 9.435177268981933,
+        "3. Local Patch Extractor (grid_sample)": 0.16898943930864335,
+        "4. Patch Embedding & Pos/Score Injections": 1.46600767493248,
+        "5. Global Token Projection": 0.02490112029016018,
+        "6. Transformer Blocks (12 Sparse Layers, 144 tokens)": 5.581393280029297,
+        "7. Detection Head (Class & BBox for 128 tokens)": 0.19579136073589326
+    },
+    "batch_scaling": {
+        "batch_sizes": [
+            1,
+            4,
+            8,
+            16
+        ],
+        "Dense": [
+            {
+                "batch": 1,
+                "ms": 48.94901949564616,
+                "fps": 20.429418409268575
+            },
+            {
+                "batch": 4,
+                "ms": 197.33162790934244,
+                "fps": 20.270445454581
+            },
+            {
+                "batch": 8,
+                "ms": 392.44773356119794,
+                "fps": 20.384880114876463
+            },
+            {
+                "batch": 16,
+                "ms": 788.1030822753906,
+                "fps": 20.301912731777698
+            }
+        ],
+        "Sparse_K128": [
+            {
+                "batch": 1,
+                "ms": 19.76139087677002,
+                "fps": 50.60372552903266
+            },
+            {
+                "batch": 4,
+                "ms": 30.97272319793701,
+                "fps": 129.1458931278741
+            },
+            {
+                "batch": 8,
+                "ms": 56.589316304524736,
+                "fps": 141.36944077835307
+            },
+            {
+                "batch": 16,
+                "ms": 107.8805325826009,
+                "fps": 148.31220811548437
+            }
+        ]
+    }
+}

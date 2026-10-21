@@ -1,0 +1,250 @@
+{
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce GTX 1650",
+    "kernel_stats": {
+        "dense": {
+            "total_cuda_kernels": 574,
+            "total_cpu_time_ms": 114.93334199999998,
+            "total_cuda_time_ms": 261.66265799999996,
+            "top_frequent_kernels": [
+                {
+                    "kernel": "aten::linear",
+                    "count": 53,
+                    "cuda_ms": 28.17060499999999
+                },
+                {
+                    "kernel": "aten::addmm",
+                    "count": 53,
+                    "cuda_ms": 28.17060499999999
+                },
+                {
+                    "kernel": "aten::reshape",
+                    "count": 29,
+                    "cuda_ms": 0.0030399999999935973
+                },
+                {
+                    "kernel": "aten::add",
+                    "count": 29,
+                    "cuda_ms": 1.2778689999999941
+                },
+                {
+                    "kernel": "volta_sgemm_64x64_tn",
+                    "count": 29,
+                    "cuda_ms": 10.501148999999998
+                }
+            ]
+        },
+        "orig_sparse": {
+            "total_cuda_kernels": 4069,
+            "total_cpu_time_ms": 103.01286200000001,
+            "total_cuda_time_ms": 80.94178400000021,
+            "top_frequent_kernels": [
+                {
+                    "kernel": "aten::reshape",
+                    "count": 303,
+                    "cuda_ms": 0.0026869999999998982
+                },
+                {
+                    "kernel": "aten::clamp",
+                    "count": 260,
+                    "cuda_ms": 0.2871279999999788
+                },
+                {
+                    "kernel": "aten::index",
+                    "count": 256,
+                    "cuda_ms": 0.7723929999999891
+                },
+                {
+                    "kernel": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1}>(long, at::native::gpu_index_kernel<at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1}>(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>, at::native::index_kernel_impl<at::native::OpaqueType<4> >(at::TensorIteratorBase&, c10::ArrayRef<long>, c10::ArrayRef<long>)::{lambda(char*, char const*, long)#1} const&, bool)::{lambda(int)#1})",
+                    "count": 256,
+                    "cuda_ms": 0.7723929999999891
+                },
+                {
+                    "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul> >(int, at::native::(anonymous namespace)::launch_clamp_scalar(at::TensorIteratorBase&, c10::Scalar, c10::Scalar, at::native::detail::ClampLimits)::{lambda()#1}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>)",
+                    "count": 147,
+                    "cuda_ms": 0.2731129999999994
+                }
+            ]
+        },
+        "method2_sparse": {
+            "total_cuda_kernels": 1321,
+            "total_cpu_time_ms": 48.470113999999995,
+            "total_cuda_time_ms": 52.56412200000007,
+            "top_frequent_kernels": [
+                {
+                    "kernel": "aten::conv2d",
+                    "count": 59,
+                    "cuda_ms": 0.9630519999999997
+                },
+                {
+                    "kernel": "aten::convolution",
+                    "count": 59,
+                    "cuda_ms": 0.9630519999999997
+                },
+                {
+                    "kernel": "aten::_convolution",
+                    "count": 59,
+                    "cuda_ms": 0.9630519999999997
+                },
+                {
+                    "kernel": "aten::linear",
+                    "count": 57,
+                    "cuda_ms": 4.812887000000006
+                },
+                {
+                    "kernel": "aten::addmm",
+                    "count": 57,
+                    "cuda_ms": 4.812887000000006
+                }
+            ]
+        }
+    },
+    "sampler_dissection": {
+        "original_mean_ms": 12.308935899995959,
+        "maxpool_mean_ms": 0.49279790001037327,
+        "speedup": 24.97765493671312
+    },
+    "oom_test": {
+        "dense": {
+            "model_name": "Normal Dense ViT",
+            "max_batch_size": 4,
+            "oom_batch_size": 8,
+            "successful_runs": [
+                {
+                    "batch_size": 1,
+                    "latency_ms": 55.64041200000247,
+                    "fps": 17.972548441948195,
+                    "peak_vram_mb": 895.13720703125
+                },
+                {
+                    "batch_size": 2,
+                    "latency_ms": 96.79310000001351,
+                    "fps": 20.66262987754004,
+                    "peak_vram_mb": 1488.34814453125
+                },
+                {
+                    "batch_size": 4,
+                    "latency_ms": 192.31846100001349,
+                    "fps": 20.798835323457165,
+                    "peak_vram_mb": 2704.11376953125
+                }
+            ]
+        },
+        "orig_sparse": {
+            "model_name": "Original Sparse-ViT",
+            "max_batch_size": 12,
+            "oom_batch_size": 16,
+            "successful_runs": [
+                {
+                    "batch_size": 1,
+                    "latency_ms": 26.29648999982237,
+                    "fps": 38.02788889341334,
+                    "peak_vram_mb": 452.78466796875
+                },
+                {
+                    "batch_size": 2,
+                    "latency_ms": 29.82082099993022,
+                    "fps": 67.0672346681763,
+                    "peak_vram_mb": 642.94970703125
+                },
+                {
+                    "batch_size": 4,
+                    "latency_ms": 36.57886599989979,
+                    "fps": 109.35276123680156,
+                    "peak_vram_mb": 1010.63427734375
+                },
+                {
+                    "batch_size": 8,
+                    "latency_ms": 61.272216000133994,
+                    "fps": 130.56488768061703,
+                    "peak_vram_mb": 1740.90966796875
+                },
+                {
+                    "batch_size": 12,
+                    "latency_ms": 82.85524799998711,
+                    "fps": 144.83089833973904,
+                    "peak_vram_mb": 2478.68115234375
+                }
+            ]
+        },
+        "method2_sparse": {
+            "model_name": "Method 2 Sparse-ViT (MaxPool)",
+            "max_batch_size": 12,
+            "oom_batch_size": 16,
+            "successful_runs": [
+                {
+                    "batch_size": 1,
+                    "latency_ms": 14.136897000071258,
+                    "fps": 70.73688094317724,
+                    "peak_vram_mb": 452.78466796875
+                },
+                {
+                    "batch_size": 2,
+                    "latency_ms": 16.926898000065194,
+                    "fps": 118.15513982492817,
+                    "peak_vram_mb": 642.94970703125
+                },
+                {
+                    "batch_size": 4,
+                    "latency_ms": 24.175972999955775,
+                    "fps": 165.45352693797753,
+                    "peak_vram_mb": 1010.63427734375
+                },
+                {
+                    "batch_size": 8,
+                    "latency_ms": 54.335702000116726,
+                    "fps": 147.2328451739303,
+                    "peak_vram_mb": 1740.90966796875
+                },
+                {
+                    "batch_size": 12,
+                    "latency_ms": 81.1159239999597,
+                    "fps": 147.93642737776077,
+                    "peak_vram_mb": 2478.68115234375
+                }
+            ]
+        }
+    },
+    "resolution_scaling": [
+        {
+            "resolution": "512x512",
+            "dense_tokens": 1024,
+            "sparse_tokens": 144,
+            "Normal Dense ViT": " 48.18 ms",
+            "Original Sparse-ViT": " 23.66 ms",
+            "Method 2 (Max-Pool)": " 10.87 ms"
+        },
+        {
+            "resolution": "640x640",
+            "dense_tokens": 1600,
+            "sparse_tokens": 144,
+            "Normal Dense ViT": " 90.82 ms",
+            "Original Sparse-ViT": " 23.79 ms",
+            "Method 2 (Max-Pool)": " 10.71 ms"
+        },
+        {
+            "resolution": "768x768",
+            "dense_tokens": 2304,
+            "sparse_tokens": 144,
+            "Normal Dense ViT": "147.43 ms",
+            "Original Sparse-ViT": " 24.08 ms",
+            "Method 2 (Max-Pool)": " 10.88 ms"
+        },
+        {
+            "resolution": "896x896",
+            "dense_tokens": 3136,
+            "sparse_tokens": 144,
+            "Normal Dense ViT": "235.85 ms",
+            "Original Sparse-ViT": " 24.27 ms",
+            "Method 2 (Max-Pool)": " 11.86 ms"
+        },
+        {
+            "resolution": "1024x1024",
+            "dense_tokens": 4096,
+            "sparse_tokens": 144,
+            "Normal Dense ViT": "350.77 ms",
+            "Original Sparse-ViT": " 32.87 ms",
+            "Method 2 (Max-Pool)": " 13.03 ms"
+        }
+    ]
+}
